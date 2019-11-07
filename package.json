@@ -6,31 +6,50 @@
   "author": "Park Dong Il",
   "license": "ISC",
   "dependencies": {
-    "@babel/core": "^7.5.4",
-    "@babel/node": "^7.5.0",
-    "@babel/preset-env": "^7.5.4",
+    "@babel/node": "^7.7.0",
+    "@babel/polyfill": "^7.7.0",
+    "@babel/preset-env": "^7.7.1",
+    "babel-loader": "^8.0.6",
     "babelify": "^10.0.0",
-    "del": "^5.0.0",
-    "eslint": "^6.0.1",
+    "cross-env": "^6.0.3",
+    "css-loader": "^3.2.0",
+    "del": "^5.1.0",
+    "eslint": "^6.6.0",
     "express": "^4.17.1",
+    "extract-text-webpack-plugin": "^4.0.0-beta.0",
+    "gh-pages": "^2.1.1",
     "gulp": "^4.0.2",
     "gulp-autoprefixer": "^6.1.0",
     "gulp-browserify": "^0.5.1",
     "gulp-csso": "^3.0.1",
     "gulp-sass": "^4.0.2",
     "morgan": "^1.9.1",
-    "node-sass": "^4.12.0",
-    "nodemon": "^1.19.1",
+    "node-sass": "^4.13.0",
+    "nodemon": "^1.19.4",
+    "postcss-loader": "^3.0.0",
     "pug": "^2.0.4",
-    "socket.io": "^2.2.0"
+    "sass-loader": "^8.0.0",
+    "socket.io": "^2.3.0",
+    "webpack": "^4.41.2"
   },
   "scripts": {
     "dev:server": "nodemon --exec babel-node src/server --ignore assets/ --ignore src/static",
-    "dev:assets": "gulp"
+    "dev:assets": "cross-env WEBPACK_ENV=development webpack -w",
+    "build": "cross-env WEBPACK_ENV=production webpack",
+    "prestart": "npm run build",
+    "deploy": "gh-pages -d build",
+    "predeploy": "yarn run build"
   },
   "devDependencies": {
-    "eslint-config-prettier": "^6.0.0",
-    "eslint-plugin-prettier": "^3.1.0",
-    "prettier": "^1.18.2"
-  }
+    "@babel/core": "^7.7.2",
+    "babel-core": "7.0.0-bridge.0",
+    "babel-jest": "^24.9.0",
+    "eslint-config-prettier": "^6.5.0",
+    "eslint-plugin-prettier": "^3.1.1",
+    "jest": "^24.9.0",
+    "prettier": "^1.18.2",
+    "regenerator-runtime": "^0.13.3",
+    "webpack-cli": "^3.3.10"
+  },
+  "homepage": "https://parkdl.github.io/grabmind"
 }
